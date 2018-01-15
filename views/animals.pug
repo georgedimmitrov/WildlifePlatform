@@ -1,0 +1,12 @@
+extends layout
+
+include mixins/_animalCard
+include mixins/_pagination
+
+block content
+  .inner
+    h2= title
+    .animals
+      each animal in animals
+        +animalCard(animal)
+    +pagination(page, pages, count)

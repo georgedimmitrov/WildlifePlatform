@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .single
+    .single__hero
+      img.single__image(src=`/uploads/${animal.photo || 'animal.png'}`)
+      h2.title.title--single
+        a(href=`/animal/${animal.slug}`) #{animal.animal}
+
+  .single__details.inner
+    img.single__map(src=h.staticMap(animal.location.coordinates))
+    p.single__location= animal.location.habitat
+    p(style='white-space:pre-wrap;')= animal.description
+
+    if animal.categories
+      ul.categories
+        each category in animal.categories
+          li.category
+            a.category__link(href=`/categories/${category}`)
+              span.category__text  #{category}

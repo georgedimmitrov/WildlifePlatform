@@ -1,0 +1,16 @@
+extends layout
+
+include mixins/_animalCard
+
+block content
+  .inner
+    h2 #{category || 'Categories'}
+    ul.categories
+      each cat in categories
+        li.category
+          a.category__link(href=`/categories/${cat._id}` class=(cat._id === category ? 'category__link--active' : ''))
+            span.category__text= cat._id
+            span.category__count= cat.count
+    .animals
+      each animal in animals
+        +animalCard(animal)

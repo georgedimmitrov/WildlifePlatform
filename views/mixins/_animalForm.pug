@@ -1,0 +1,28 @@
+mixin animalForm(animal = {})
+  form(action=`/add/${animal._id || ''}` method="POST" class="card" enctype="multipart/form-data")
+    //- pre= h.dump(animal)
+    label(for="animal") Animal
+    input(type="text" name="animal" id="animal" placeholder="Enter animal name" value=animal.animal)
+    label(for="description") Description
+    textarea(name="description" id="description" rows="8" cols="50" placeholder="Longer description of species, distribution and habitat, etc...")= animal.description
+    //- Image Upload
+    label(for="photo") Photo
+      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+      if animal.photo
+        img(src=`/uploads/${animal.photo}`, alt=animal.animal width=200)
+    //- habitat, lng and lat
+    label(for="habitat") Habitat
+    input(type="text" id="habitat" name="location[habitat]" value=(animal.location && animal.location.habitat))
+    label(for="lng") Habitat Lng
+    input(type="text" id="lng" name="location[coordinates][0]" placeholder="Field will be filled in automatically after entering 'Habitat'." value=(animal.location && animal.location.coordinates[0]) required)
+    label(for="lat") Habitat Lat
+    input(type="text" id="lat" name="location[coordinates][1]" placeholder="Field will be filled in automatically after entering 'Habitat'." value=(animal.location && animal.location.coordinates[1]) required)
+    - const choices = ['Invertebrates', 'Fish', 'Amphibians', 'Reptiles', 'Birds', 'Mammals']
+    - const categories = animal.categories || []
+    ul.categories
+      each choice in choices
+        .category.category__choice
+          input(type="checkbox" id=choice value=choice name="categories" checked=(categories.includes(choice)))
+          label(for=choice) #{choice}
+    input(type="submit" value="Save" class="button")
+    a(href=`/api/delete/${animal._id}` data-id=animal._id name="deleteanimal" class=`delete__button ${animal.animal ? '' : 'hidden'}`) Delete

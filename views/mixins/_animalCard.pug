@@ -1,0 +1,22 @@
+mixin animalCard(animal = {})
+  .animal
+    .animal__hero
+      .animal__actions
+        if user
+          .animal__action.animal__action--heart
+            form.heart(method="POST" action=`/api/animals/${animal._id}/heart`)
+              - const heartStrings = user.hearts.map(obj => obj.toString())
+              - const heartClass = heartStrings.includes(animal._id.toString()) ? 'heart__button--hearted' : ''
+              button.heart__button(type="submit" name="heart" class=heartClass)
+                != h.icon('heart-2')
+        if user && animal.author.equals(user._id)
+          .animal__action.animal__action--edit
+            a(href=`/animals/${animal._id}/edit`)
+              != h.icon('pencil')
+
+      img(src=`/uploads/${animal.photo || 'animal.png'}`)
+      h2.title
+        a(href=`/animal/${animal.slug}`) #{animal.animal}
+    .animal__details
+      p= animal.description.split(' ').slice(0, 20).join(' ') + '...'
+      

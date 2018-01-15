@@ -1,0 +1,11 @@
+mixin pagination(page, pages, count)
+  if page
+    .pagination
+      .pagination__prev
+        if page > 1
+          a(href=`/animals/page/${page - 1}`) Prev
+      .pagination__text
+        p Page #{page} of #{pages} — #{count} total results
+      .pagination__next
+        if page < pages
+          a(href=`/animals/page/${parseFloat(page) + 1}`) Next

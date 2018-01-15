@@ -1,0 +1,49 @@
+input, textarea {
+  width:100%;
+  padding:10px;
+  border: 1px solid $grey;
+  &.input {
+    &--error {
+      border-color: red;
+    }
+  }
+}
+
+label {
+  padding: 10px 0;
+  display: block;
+}
+
+.form {
+  background: white;
+  padding: 2rem;
+  box-shadow: $grad;
+  & + .form {
+    margin-top: 4rem;
+  }
+  // I know this isn't bem but meh
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid $grey;
+  }
+}
+
+.delete__button {
+  margin-top: 1rem;
+  border: 0;
+  background: $redish;
+  color: #fff;
+  font-family: 'Panama';
+  font-weight: 600;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+
+.form__last-field {
+  margin-bottom: 2rem;
+}
