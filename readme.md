@@ -23,4 +23,8 @@ That will populate 15 animals with 1 author (admin account) and 2 registered use
 |User Account|user@abv.bg|user|
 |Peter Georgiev|pesho@abv.bg|pesho|
 
+Snapshots of user interface:
+![Alt text](/screenshots/mainscreen.jpg?raw=true "Application Main Screen")
+
+
 
